@@ -8,3 +8,11 @@ en:
       title: Top containers by resource
       description: All top containers associated with a resource, including top container location
       identifier_prefix: Container
+    top_containers_by_profile:
+      title: Container Profile Top Containers
+      description: All top containers associated with a container profile
+      identifier_prefix: Container
+    location_profiles_locations:
+      title: Location Profiles Locations
+      description: All locations with a location profile
+      identifier_prefix: Location

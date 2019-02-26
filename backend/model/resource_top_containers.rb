@@ -2,13 +2,13 @@ class ResourceTopContainers < AbstractReport
   # Containers not associated with anything
 
   register_report(
-    params: [['resource_id', String, 'ID of a resource to get containers for']]
+    params: [['eadid', String, 'EADID of a resource to get containers for']]
   )
 
   def initialize(params, job, db)
     super
 
-    @resource_id = params.fetch('resource_id').to_i
+    @eadid = params.fetch('eadid')
   end
 
   def query_string
@@ -47,7 +47,7 @@ class ResourceTopContainers < AbstractReport
      LEFT JOIN resource r ON ao.root_record_id = r.id
      LEFT JOIN top_container_housed_at_rlshp tch ON tc.id = tch.top_container_id
      LEFT JOIN location l ON tch.location_id = l.id
-         WHERE r.id = #{db.literal(@resource_id)} AND tch.end_date IS NULL AND tc.repo_id = #{db.literal(@repo_id)}
+         WHERE eadid = #{db.literal(@eadid)} AND tch.end_date IS NULL AND tc.repo_id = #{db.literal(@repo_id)}
         UNION
         SELECT REPLACE (r.title,","," ") AS resourcetitle,
                REPLACE (r.identifier,","," ") AS resourceidentifier,
@@ -82,7 +82,7 @@ class ResourceTopContainers < AbstractReport
      LEFT JOIN resource r ON i.resource_id = r.id
      LEFT JOIN top_container_housed_at_rlshp tch ON tc.id = tch.top_container_id
      LEFT JOIN location l ON tch.location_id = l.id
-         WHERE r.id = #{db.literal(@resource_id)} AND tch.end_date IS NULL AND tc.repo_id = #{db.literal(@repo_id)}
+         WHERE eadid = #{db.literal(@eadid)} AND tch.end_date IS NULL AND tc.repo_id = #{db.literal(@repo_id)}
     SOME_SQL
   end
 
