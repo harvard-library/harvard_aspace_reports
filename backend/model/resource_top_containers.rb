@@ -1,5 +1,5 @@
 class ResourceTopContainers < AbstractReport
-  # Containers not associated with anything
+  # Top containers associated with a particular resource by EADID
 
   register_report(
     params: [['eadid', String, 'EADID of a resource to get containers for']]
@@ -47,7 +47,7 @@ class ResourceTopContainers < AbstractReport
      LEFT JOIN resource r ON ao.root_record_id = r.id
      LEFT JOIN top_container_housed_at_rlshp tch ON tc.id = tch.top_container_id
      LEFT JOIN location l ON tch.location_id = l.id
-         WHERE eadid = #{db.literal(@eadid)} AND tch.end_date IS NULL AND tc.repo_id = #{db.literal(@repo_id)}
+         WHERE r.ead_id = #{db.literal(@eadid)} AND tch.end_date IS NULL AND tc.repo_id = #{db.literal(@repo_id)}
         UNION
         SELECT REPLACE (r.title,","," ") AS resourcetitle,
                REPLACE (r.identifier,","," ") AS resourceidentifier,
@@ -82,7 +82,7 @@ class ResourceTopContainers < AbstractReport
      LEFT JOIN resource r ON i.resource_id = r.id
      LEFT JOIN top_container_housed_at_rlshp tch ON tc.id = tch.top_container_id
      LEFT JOIN location l ON tch.location_id = l.id
-         WHERE eadid = #{db.literal(@eadid)} AND tch.end_date IS NULL AND tc.repo_id = #{db.literal(@repo_id)}
+         WHERE r.ead_id = #{db.literal(@eadid)} AND tch.end_date IS NULL AND tc.repo_id = #{db.literal(@repo_id)}
     SOME_SQL
   end
 
