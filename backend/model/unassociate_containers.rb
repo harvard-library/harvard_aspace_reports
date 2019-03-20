@@ -1,4 +1,4 @@
-class DissociatedContainers < AbstractReport
+class UnassociatedContainers < AbstractReport
   # Containers not associated with anything
 
   register_report(

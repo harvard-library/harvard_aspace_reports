@@ -1,10 +1,14 @@
 en:
   reports:
-    dissociated_containers:
-      title: Dissociated containers
+    unassociated_containers:
+      title: Unassociated Top Containers
       description: Containers dissociated from any resource
       identifier_prefix: Container
     resource_top_containers:
-      title: Top containers by resource
+      title: Resource Top Containers
       description: All top containers associated with a resource, including top container location
+      identifier_prefix: Container
+    container_profile_top_containers:
+      title: Container Profile Top Containers
+      description: All top containers associated with a container profile
       identifier_prefix: Container
