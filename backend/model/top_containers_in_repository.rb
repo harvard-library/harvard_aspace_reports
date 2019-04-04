@@ -60,10 +60,10 @@ class TopContainersInRepository < AbstractReport
        LEFT JOIN enumeration_value ev3 ON lp.dimension_units_id = ev3.id
            WHERE tc.repo_id = #{db.literal(@repo_id)} AND tch.end_date IS NULL AND r.ead_id IS NOT NULL
        UNION
-         SELECT "Resource" AS collectiontype,
-                REPLACE (r.title,","," ") AS collectiontitle,
-                REPLACE (r.identifier,","," ") AS collectionidentifier,
-                r.ead_id AS eadid,
+         SELECT "Accession" AS collectiontype,
+                REPLACE (a.title,","," ") AS collectiontitle,
+                REPLACE (a.identifier,","," ") AS collectionidentifier,
+                'None' AS eadid,
                 tc.id AS containerrecordid,
                 ev1.value AS containertype,
                 CONCAT("'",tc.indicator) AS containerindicator,
