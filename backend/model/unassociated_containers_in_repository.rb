@@ -1,4 +1,4 @@
-class UnassociateContainersInRepository < AbstractReport
+class UnassociatedContainersInRepository < AbstractReport
 
   register_report(params: [])
 
