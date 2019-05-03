@@ -25,5 +25,5 @@ en:
       identifier_prefix: Archival Object
     resource_top_containers:
       title: Resource Top Containers
-      description: Displays all top containers associated with one or more resources. Report contains top containers with profile, location with profile, and resource (identifier, title, and eadid).
+      description: Displays all top containers associated with one or more resources. Report contains top containers with profile, location with profile, and resource (identifier, title, and eadid). Enter multiple EADIDs separated by commas.
       identifier_prefix: Resource

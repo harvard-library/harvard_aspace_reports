@@ -37,6 +37,9 @@ class LocationsWithProfileAndRepo < AbstractReport
                 tc.ils_holding_id AS containerilsholdingid,
                 tc.ils_item_id AS containerilsitemid,
                 tc.exported_to_ils AS containerexportedtoils,
+                tch.status AS containerlocationstatus,
+                tch.start_date AS containerlocationstartdate,
+                tch.note AS containerlocationnote,
                 cp.id AS containerprofilerecordid ,
                 cp.name AS containerprofile,
                 cp.extent_dimension AS containerprofileextentdimension,
@@ -72,7 +75,7 @@ class LocationsWithProfileAndRepo < AbstractReport
                  LEFT JOIN (SELECT id, title, identifier, 'None' as ead_id, 'accession' as collectiontype FROM accession) acc
                         ON i.accession_id = acc.id) r
              ON sc.instance_id = r.id
-      WHERE     tc.repo_id = #{db.literal(@repo_id)} AND tch.end_date IS NULL;
+      WHERE (tc.repo_id = #{db.literal(@repo_id)} OR tc.repo_id IS NULL)  AND tch.end_date IS NULL;
 
     SOME_SQL
   end
