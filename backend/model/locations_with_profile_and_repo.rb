@@ -68,7 +68,7 @@ class LocationsWithProfileAndRepo < AbstractReport
                  FROM      instance i
                  LEFT JOIN archival_object ao
                         ON i.archival_object_id = ao.id
-                 LEFT JOIN (SELECT id, title, identifier, ead_id, 'archival_object' as collectiontype FROM resource) r1
+                 LEFT JOIN (SELECT id, title, identifier, ead_id, 'resource' as collectiontype FROM resource) r1
                         ON ao.root_record_id = r1.id
                  LEFT JOIN (SELECT id, title, identifier, ead_id, 'resource' as collectiontype FROM resource) r2
                         ON i.resource_id = r2.id
