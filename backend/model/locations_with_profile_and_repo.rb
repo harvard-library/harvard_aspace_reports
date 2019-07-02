@@ -26,12 +26,13 @@ class LocationsWithProfileAndRepo < AbstractReport
                 lp.width AS locationwidth,
                 lp.depth AS locationdepth,
                 CASE
-                    WHEN COALESCE(r_direct.ead_id, r_by_ao.ead_id, 'None') = 'None' THEN 'accession'
+                    WHEN COALESCE(r_direct.id, r_by_ao.id, acc.id) IS NULL THEN NULL
+                    WHEN COALESCE(r_direct.ead_id, r_by_ao.ead_id) IS NULL THEN 'accession'
                     ELSE 'resource'
                 END as collectiontype,
                 REPLACE (COALESCE(r_direct.title, r_by_ao.title, acc.title),","," ") AS collectiontitle,
                 REPLACE (COALESCE(r_direct.identifier, r_by_ao.identifier, acc.identifier),","," ") AS collectionidentifier,
-                COALESCE(r_direct.ead_id, r_by_ao.ead_id, 'None') as eadid,
+                COALESCE(r_direct.ead_id, r_by_ao.ead_id) as eadid,
                 tc.id AS containerrecordid,
                 ev1.value AS containertype,
                 CONCAT("'",tc.indicator, "'") AS containerindicator,
