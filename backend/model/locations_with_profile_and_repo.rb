@@ -35,7 +35,7 @@ class LocationsWithProfileAndRepo < AbstractReport
                 COALESCE(r_direct.ead_id, r_by_ao.ead_id) as eadid,
                 tc.id AS containerrecordid,
                 ev1.value AS containertype,
-                CONCAT("'",tc.indicator, "'") AS containerindicator,
+                CONCAT("'",tc.indicator) AS containerindicator,
                 tc.barcode AS containerbarcode,
                 tc.ils_holding_id AS containerilsholdingid,
                 tc.ils_item_id AS containerilsitemid,
