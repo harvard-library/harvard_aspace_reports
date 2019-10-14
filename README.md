@@ -14,6 +14,10 @@ In order to create a new report, you need to add the following:
 
 1. a new report class, inheriting from `AbstractReport`, with:
   - a call to `register_report`, listing any parameters the report takes
+    - parameters are passed into register report as an array, with each parameter being an array of:
+      - parameter's name
+      - type of parameter, which is a COMPLICATED ISSUE but String is safe
+      - description of param, which shows in the interface
   - a `query_string` method that returns the SQL statement to generate the report
   - IF the report takes parameters, an initialize method that calls super and then sets variables based on the params
   
